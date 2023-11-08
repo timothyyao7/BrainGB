@@ -66,7 +66,7 @@ def main(args):
         for train_index, test_index in skf.split(dataset, y):
             model = build_model(args, device, model_name, num_features, nodes_num)
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
-            train_set, test_set = dataset[train_index], dataset[test_index]
+            train_set, test_set = dataset[train_index.astype(np.int64)], dataset[test_index.astype(np.int64)]
 
             train_loader = DataLoader(train_set, batch_size=args.train_batch_size, shuffle=False)
             test_loader = DataLoader(test_set, batch_size=args.test_batch_size, shuffle=False)

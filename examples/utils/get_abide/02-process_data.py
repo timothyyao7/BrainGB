@@ -43,7 +43,7 @@ def main(args):
 
     print('Arguments: \n', args)
 
-    data_folder = os.path.join(args.root_path, 'ABIDE_pcp/cpac/filt_noglobal/')
+    data_folder = os.path.join(args.root_path, 'ABIDE_pcp\\cpac\\filt_noglobal\\')
 
 
     params = dict()

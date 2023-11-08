@@ -8,10 +8,10 @@ import pandas as pd
 
 
 def main(args):
-    data_dir =  os.path.join(args.root_path, 'ABIDE_pcp/cpac/filt_noglobal/raw')
-    timeseires = os.path.join(args.root_path, 'ABIDE_pcp/cpac/filt_noglobal/')
+    data_dir =  os.path.join(args.root_path, 'ABIDE_pcp\\cpac\\filt_noglobal\\raw')
+    timeseires = os.path.join(args.root_path, 'ABIDE_pcp\\cpac\\filt_noglobal\\')
 
-    meta_file = os.path.join(args.root_path, 'ABIDE_pcp/Phenotypic_V1_0b_preprocessed1.csv')
+    meta_file = os.path.join(args.root_path, 'ABIDE_pcp\\Phenotypic_V1_0b_preprocessed1.csv')
 
     meta_file = pd.read_csv(meta_file, header=0)
 
@@ -62,7 +62,7 @@ def main(args):
             pcorrs.append(pcorr)
             site_list.append(site)
 
-    np.save(Path(args.root_path)/'ABIDE_pcp/abide.npy', {'timeseires': np.array(times), "label": np.array(labels),"corr": np.array(corrs),"pcorr": np.array(pcorrs), 'site': np.array(site_list)})
+    np.save(Path(args.root_path)/'ABIDE_pcp\\abide.npy', {'timeseires': np.array(times), "label": np.array(labels),"corr": np.array(corrs),"pcorr": np.array(pcorrs), 'site': np.array(site_list)})
 
 
 if __name__ == '__main__':
