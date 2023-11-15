@@ -7,6 +7,8 @@ from typing import Optional
 from torch.utils.data import DataLoader
 import logging
 from src.utils import mixup, mixup_criterion
+import datetime
+import csv
 
 
 def train_and_evaluate(model, train_loader, test_loader, optimizer, device, args):
@@ -36,18 +38,34 @@ def train_and_evaluate(model, train_loader, test_loader, optimizer, device, args
         epoch_loss = loss_all / len(train_loader.dataset)
 
         train_micro, train_auc, train_macro = evaluate(model, device, train_loader)
+        now = datetime.datetime.now()
         logging.info(f'(Train) | Epoch={i:03d}, loss={epoch_loss:.4f}, '
                      f'train_micro={(train_micro * 100):.2f}, train_macro={(train_macro * 100):.2f}, '
                      f'train_auc={(train_auc * 100):.2f}')
+        print(f'{now} || '
+                     f'(Train) | Epoch={i:03d}, loss={epoch_loss:.4f}, '
+                     f'train_micro={(train_micro * 100):.2f}, train_macro={(train_macro * 100):.2f}, '
+                     f'train_auc={(train_auc * 100):.2f}')
+        my_row = [i, epoch_loss, train_micro, train_macro, train_auc, -1, -1, -1]
 
         if (i + 1) % args.test_interval == 0:
             test_micro, test_auc, test_macro = evaluate(model, device, test_loader)
             accs.append(test_micro)
             aucs.append(test_auc)
             macros.append(test_macro)
-            text = f'(Train Epoch {i}), test_micro={(test_micro * 100):.2f}, ' \
+            text = f'{now} || ' \
+                   f'(Train Epoch {i}), test_micro={(test_micro * 100):.2f}, ' \
                    f'test_macro={(test_macro * 100):.2f}, test_auc={(test_auc * 100):.2f}\n'
             logging.info(text)
+            print(text)
+            my_row[5] = test_micro
+            my_row[6] = test_macro
+            my_row[7] = test_auc
+
+        with open("my_results.csv", 'a', newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(my_row)
+            f.close()
 
         if args.enable_nni:
             nni.report_intermediate_result(train_auc)

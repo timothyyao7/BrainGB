@@ -4,3 +4,9 @@
 ['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABIDE', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256']
 (K Fold Final Result)| avg_acc=64.72 +-  2.41, avg_auc=71.53 +- 2.24, avg_macro=64.18 +- 3.10
 
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABIDE', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256']
+(K Fold Final Result)| avg_acc=62.14 +-  2.59, avg_auc=69.47 +- 4.32, avg_macro=61.62 +- 2.05
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABIDE', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256']
+(K Fold Final Result)| avg_acc=64.32 +-  1.07, avg_auc=69.20 +- 1.17, avg_macro=64.20 +- 1.03
+

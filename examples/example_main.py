@@ -87,6 +87,7 @@ def main(args):
                  f'avg_auc={(np.mean(aucs) * 100):.2f} +- {np.std(aucs) * 100:.2f}, ' \
                  f'avg_macro={(np.mean(macros) * 100):.2f} +- {np.std(macros) * 100:.2f}\n'
     logging.info(result_str)
+    print(result_str)
 
     with open('result.log', 'a') as f:
         # write all input arguments to f
