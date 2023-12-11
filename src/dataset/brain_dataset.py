@@ -9,7 +9,7 @@ from .base_transform import BaseTransform
 from .brain_data import BrainData
 import sys
 from torch_geometric.data.makedirs import makedirs
-from .abcd.load_abcd import load_data_abcd, load_data_abide, load_data_pnc
+from .abcd.load_abcd import load_data_abcd, load_data_abide, load_data_pnc, load_data_abcd_pre
 from torch_geometric.data.dataset import files_exist
 import logging
 
@@ -26,9 +26,10 @@ def dense_to_ind_val(adj):
 
 
 class BrainDataset(InMemoryDataset):
-    def __init__(self, root, name, transform=None, pre_transform: BaseTransform = None, view=0):
+    def __init__(self, root, name, label_name="", transform=None, pre_transform: BaseTransform = None, view=0):
         self.view: int = view
         self.name = name.upper()
+        self.label_name = label_name
         self.filename_postfix = str(pre_transform) if pre_transform is not None else None
         assert self.name in ['PPMI', 'HIV', 'BP', 'ABCD', 'PNC', 'ABIDE']
         super(BrainDataset, self).__init__(root, transform, pre_transform)
@@ -66,7 +67,9 @@ class BrainDataset(InMemoryDataset):
 
     def process(self):
         if self.name in ['ABCD', 'PNC', 'ABIDE']:
-            if self.name == 'ABCD':
+            if self.name == 'ABCD' and self.label_name:
+                adj, y = load_data_abcd_pre(self.raw_dir, self.label_name)
+            elif self.name == 'ABCD':
                 adj, y = load_data_abcd(self.raw_dir)
             elif self.name == 'PNC':
                 adj, y = load_data_pnc(self.raw_dir)

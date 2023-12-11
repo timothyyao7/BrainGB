@@ -49,6 +49,7 @@ def main(args):
         root_dir = os.path.join(self_dir, 'datasets/')
     dataset = BrainDataset(root=root_dir,
                            name=args.dataset_name,
+                           label_name=args.label_name,
                            pre_transform=get_transform(args.node_features))
     y = get_y(dataset)
     num_features = dataset[0].x.shape[1]
@@ -146,5 +147,7 @@ if __name__ == "__main__":
     parser.add_argument('--seed', type=int, default=112078)
     parser.add_argument('--diff', type=float, default=0.2)
     parser.add_argument('--mixup', type=int, default=1) #[0, 1]
+
+    parser.add_argument('--label_name', type=str, default="")
 
     main(parser.parse_args())

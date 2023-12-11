@@ -1,0 +1,30 @@
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_anxdep_t']
+(K Fold Final Result)| avg_acc=85.63 +-  1.08, avg_auc=50.46 +- 1.52, avg_macro=48.22 +- 0.83
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_withdep_t']
+(K Fold Final Result)| avg_acc=86.51 +-  0.41, avg_auc=49.41 +- 1.13, avg_macro=48.53 +- 0.72
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_somatic_t']
+(K Fold Final Result)| avg_acc=73.38 +-  1.44, avg_auc=50.72 +- 1.17, avg_macro=48.46 +- 0.69
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_social_t']
+(K Fold Final Result)| avg_acc=89.94 +-  0.91, avg_auc=48.60 +- 1.88, avg_macro=50.91 +- 0.68
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_thought_t']
+(K Fold Final Result)| avg_acc=83.69 +-  0.58, avg_auc=52.03 +- 1.47, avg_macro=49.18 +- 0.89
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_attention_t']
+(K Fold Final Result)| avg_acc=84.98 +-  1.11, avg_auc=51.52 +- 2.56, avg_macro=49.14 +- 0.90
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_rulebreak_t']
+(K Fold Final Result)| avg_acc=91.71 +-  0.27, avg_auc=53.50 +- 2.80, avg_macro=50.11 +- 0.79
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_aggressive_t']
+(K Fold Final Result)| avg_acc=87.52 +-  0.67, avg_auc=50.87 +- 2.62, avg_macro=49.58 +- 0.56
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_internal_t']
+(K Fold Final Result)| avg_acc=82.50 +-  0.76, avg_auc=50.25 +- 1.37, avg_macro=48.82 +- 0.80
+
+['C:\\Users\\timot\\Documents\\GitHub\\BrainGB\\examples\\example_main.py', '--dataset_name', 'ABCD', '--pooling', 'concat', '--gcn_mp_type', 'edge_node_concate', '--hidden_dim', '256', '--label_name', 'cbcl_scr_syn_external_t']
+(K Fold Final Result)| avg_acc=89.01 +-  0.32, avg_auc=53.48 +- 0.66, avg_macro=50.66 +- 0.96
+

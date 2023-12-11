@@ -37,7 +37,7 @@ def train_and_evaluate(model, train_loader, test_loader, optimizer, device, args
             loss_all += loss.item()
         epoch_loss = loss_all / len(train_loader.dataset)
 
-        train_micro, train_auc, train_macro = evaluate(model, device, train_loader)
+        train_micro, train_auc, train_macro, train_bal_acc = evaluate(model, device, train_loader)
         now = datetime.datetime.now()
         logging.info(f'(Train) | Epoch={i:03d}, loss={epoch_loss:.4f}, '
                      f'train_micro={(train_micro * 100):.2f}, train_macro={(train_macro * 100):.2f}, '
@@ -46,10 +46,10 @@ def train_and_evaluate(model, train_loader, test_loader, optimizer, device, args
                      f'(Train) | Epoch={i:03d}, loss={epoch_loss:.4f}, '
                      f'train_micro={(train_micro * 100):.2f}, train_macro={(train_macro * 100):.2f}, '
                      f'train_auc={(train_auc * 100):.2f}')
-        my_row = [i, epoch_loss, train_micro, train_macro, train_auc, -1, -1, -1]
+        my_row = [i, epoch_loss, train_micro, train_macro, train_auc, train_bal_acc, -1, -1, -1, -1]
 
         if (i + 1) % args.test_interval == 0:
-            test_micro, test_auc, test_macro = evaluate(model, device, test_loader)
+            test_micro, test_auc, test_macro, test_bal_acc = evaluate(model, device, test_loader)
             accs.append(test_micro)
             aucs.append(test_auc)
             macros.append(test_macro)
@@ -58,11 +58,12 @@ def train_and_evaluate(model, train_loader, test_loader, optimizer, device, args
                    f'test_macro={(test_macro * 100):.2f}, test_auc={(test_auc * 100):.2f}\n'
             logging.info(text)
             print(text)
-            my_row[5] = test_micro
-            my_row[6] = test_macro
-            my_row[7] = test_auc
+            my_row[6] = test_micro
+            my_row[7] = test_macro
+            my_row[8] = test_auc
+            my_row[9] = test_bal_acc
 
-        with open("my_results.csv", 'a', newline="") as f:
+        with open("training\\" + args.label_name + ".csv", 'a', newline="") as f:
             writer = csv.writer(f)
             writer.writerow(my_row)
             f.close()
@@ -95,9 +96,10 @@ def evaluate(model, device, loader, test_loader: Optional[DataLoader] = None) ->
         train_auc = 0.5
     train_micro = metrics.f1_score(trues, preds, average='micro')
     train_macro = metrics.f1_score(trues, preds, average='macro', labels=[0, 1])
+    train_bal_acc = metrics.balanced_accuracy_score(trues, preds)
 
     if test_loader is not None:
-        test_micro, test_auc, test_macro = evaluate(model, device, test_loader)
-        return train_micro, train_auc, train_macro, test_micro, test_auc, test_macro
+        test_micro, test_auc, test_macro, test_bal_acc = evaluate(model, device, test_loader)
+        return train_micro, train_auc, train_macro, train_bal_acc, test_micro, test_auc, test_macro, test_bal_acc
     else:
-        return train_micro, train_auc, train_macro
+        return train_micro, train_auc, train_macro, train_bal_acc

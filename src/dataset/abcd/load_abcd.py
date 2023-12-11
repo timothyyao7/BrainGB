@@ -69,3 +69,11 @@ def load_data_abide(abide_path):
     labels = data["label"]
 
     return final_pearson, labels
+
+
+def load_data_abcd_pre(abcd_path, label_name):
+    data = np.load(abcd_path + "\\" + label_name + ".npy", allow_pickle=True).item()
+    corr = data["corr"]
+    labels = data["label"]
+
+    return corr, labels
